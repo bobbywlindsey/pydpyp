@@ -50,7 +50,7 @@ To query Spotify-related functions:
 spotify = pydpyp.Spotify(spotify_token, spotify_username)
 spotify.get_playlist_names()
 spotify.get_playlist_songs('indie')
-spotify.get_total_tracks('indie')
+spotify.get_total_tracks('rock')
 ```
 
 To query Google Play Music functions:
@@ -58,7 +58,13 @@ To query Google Play Music functions:
 ```python
 gm = pydpyp.GooglePlayMusic(gmail_address, gmail_password, spotify_token, spotify_username)
 gm.get_playlist_names()
-gm.get_playlist_songs('indie')
-gm.find_playlist_duplicate_songs('indie')
-gm.delete_playlist_duplicate_songs('indie')
+gm.get_playlist_songs('electronic')
+gm.find_playlist_duplicate_songs('soundtrack')
+gm.delete_playlist_duplicate_songs('rap')
+```
+
+You can even copy your Spotify playlist songs over to a Google Play Music playlist.
+
+```python
+gm.spotify2google_playlist('spotify_playlist_name', 'google_playlist_name')
 ```
