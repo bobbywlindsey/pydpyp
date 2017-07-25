@@ -59,6 +59,6 @@ To query Google Play Music functions:
 gm = pydpyp.GooglePlayMusic(gmail_address, gmail_password)
 gm.get_playlist_names()
 gm.get_playlist_songs('indie')
-gm.find_playlist_duplicate_songs()
-gm.delete_playlist_duplicate_songs()
+gm.find_playlist_duplicate_songs('indie')
+gm.delete_playlist_duplicate_songs('indie')
 ```
