@@ -1,15 +1,21 @@
 from gmusicapi import Mobileclient
+from spotify import Spotify
 
-class GooglePlayMusic():
+
+class GooglePlayMusic:
     """
     parameters:
         gmail_address (str)
         gmail_pasword (str)
+        spotify_token (str)
+        spotify_username (str)
     """
-    def __init__(self, gmail_address, gmail_password):
+    def __init__(self, gmail_address, gmail_password, spotify_token, spotify_username):
         # set environment variables for gmusicapi
         self.api = Mobileclient()
         self.api.login(gmail_address, gmail_password, Mobileclient.FROM_MAC_ADDRESS)
+        self.spotify_token = spotify_token
+        self.spotify_username = spotify_username
 
     def get_playlist_names(self):
         playlists = self.api.get_all_playlists()
@@ -44,11 +50,12 @@ class GooglePlayMusic():
         self.api.delete_songs(duplicate_songs_ids)
 
     def spotify2google_playlist(self, spotify_playlist_name, google_playlist_name):
-        google_playlists = google_get_playlist_names()
+        google_playlists = self.get_playlist_names()
         for each in google_playlists:
             if each[0] == google_playlist_name:
                 playlist_id = each[1]
-        spot_songs = spot_get_playlist_songs(spotify_playlist_name)
+        spot = Spotify(self.spotify_token, self.spotify_username)
+        spot_songs = spot.get_playlist_songs(spotify_playlist_name)
         spot_songs = [' '.join(each) for each in spot_songs]
         songs_to_add = []
         for spot_song in spot_songs:

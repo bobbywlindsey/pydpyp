@@ -33,8 +33,8 @@ SPOTIPY_CLIENT_ID = ''
 SPOTIPY_CLIENT_SECRET = ''
 SPOTIPY_REDIRECT_URI = 'http://localhost/'
 scope = 'playlist-read-private'
-username = ''
-token = util.prompt_for_user_token(username, scope, SPOTIPY_CLIENT_ID,\ 
+spotify_username = ''
+spotify_token = util.prompt_for_user_token(spotify_username, scope, SPOTIPY_CLIENT_ID,\ 
                                    SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI)
 
 # Google Play Music
@@ -47,7 +47,7 @@ You will be prompted to copy and paste the url that gets redireted to you into t
 To query Spotify-related functions:
 
 ```python
-spotify = pydpyp.Spotify(token, username)
+spotify = pydpyp.Spotify(spotify_token, spotify_username)
 spotify.get_playlist_names()
 spotify.get_playlist_songs('indie')
 spotify.get_total_tracks('indie')
@@ -56,7 +56,7 @@ spotify.get_total_tracks('indie')
 To query Google Play Music functions:
 
 ```python
-gm = pydpyp.GooglePlayMusic(gmail_address, gmail_password)
+gm = pydpyp.GooglePlayMusic(gmail_address, gmail_password, spotify_token, spotify_username)
 gm.get_playlist_names()
 gm.get_playlist_songs('indie')
 gm.find_playlist_duplicate_songs('indie')
